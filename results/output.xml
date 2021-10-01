@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20211001 13:49:20.353" rpa="false" schemaversion="2">
+<suite id="s1" name="TestCasesFakeAPI" source="C:\Users\user\Documents\FakeAPI\CursoRobot\TestCases\TestCasesFakeAPI.robot">
+<kw name="Conectar a minha API" library="ResourceFakeAPI" type="SETUP">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>fakeAPI</arg>
+<arg>${URL_API}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20211001 13:49:20.504" level="INFO">Creating Session using : alias=fakeAPI, url=https://fakerestapi.azurewebsites.net/api/v1/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211001 13:49:20.504" endtime="20211001 13:49:20.504"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${CONTEUDO}</var>
+<arg>../Resources/data.json</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20211001 13:49:20.505" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\user\Documents\FakeAPI\CursoRobot\Resources\data.json"&gt;C:\Users\user\Documents\FakeAPI\CursoRobot\Resources\data.json&lt;/a&gt;'.</msg>
+<msg timestamp="20211001 13:49:20.505" level="INFO">${CONTEUDO} = {
+    "id": 2322,
+    "title": "teste",
+    "description": "descricao de teste",
+    "pageCount": 0,
+    "excerpt": "string",
+    "publishDate": "2021-09-29T12:47:35.579Z"
+}</msg>
+<status status="PASS" starttime="20211001 13:49:20.505" endtime="20211001 13:49:20.505"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${CONTEUDO}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20211001 13:49:20.506" level="INFO">${CONTEUDO} = {
+    "id": 2322,
+    "title": "teste",
+    "description": "descricao de teste",
+    "pageCount": 0,
+    "excerpt": "string",
+    "publishDate": "2021-09-29T12:47:35.579Z"
+}</msg>
+<status status="PASS" starttime="20211001 13:49:20.506" endtime="20211001 13:49:20.506"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($CONTEUDO)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20211001 13:49:20.512" level="INFO">${json} = {'id': 2322, 'title': 'teste', 'description': 'descricao de teste', 'pageCount': 0, 'excerpt': 'string', 'publishDate': '2021-09-29T12:47:35.579Z'}</msg>
+<status status="PASS" starttime="20211001 13:49:20.506" endtime="20211001 13:49:20.512"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${json}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20211001 13:49:20.513" level="INFO">${json} = {'id': 2322, 'title': 'teste', 'description': 'descricao de teste', 'pageCount': 0, 'excerpt': 'string', 'publishDate': '2021-09-29T12:47:35.579Z'}</msg>
+<status status="PASS" starttime="20211001 13:49:20.512" endtime="20211001 13:49:20.513"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:20.503" endtime="20211001 13:49:20.513"/>
+</kw>
+<test id="s1-t1" name="Buscar a listagem de todos os livros (GET em todos os livros)">
+<kw name="Dado Requisitar todos os livros" library="BDDpt-br" sourcename="Dado ${keyword}">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Requisitar todos os livros" library="ResourceFakeAPI">
+<kw name="GET" library="RequestsLibrary">
+<var>${RESPOSTA}</var>
+<arg>${URL_API}Books</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20211001 13:49:24.086" level="INFO">GET Request : url=https://fakerestapi.azurewebsites.net/api/v1/Books 
+ path_url=/api/v1/Books 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20211001 13:49:24.088" level="INFO">GET Response : url=https://fakerestapi.azurewebsites.net/api/v1/Books 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Content-Type': 'application/json; charset=utf-8; v=1.0', 'Server': 'Kestrel', 'api-supported-versions': '1.0', 'Date': 'Fri, 01 Oct 2021 16:49:20 GMT'} 
+ body=[{"id":1,"title":"Book 1","description":"At takimata diam sadipscing odio aliquyam vel. Duo ea no sed dolor aliquip sadipscing ut justo ea eu duo accusam eos stet sit consetetur in augue. Accusam lorem eos. Iusto gubergren duo. Vero ut eos tempor. Diam et sed sed diam ea. Lorem et amet takimata lorem accumsan nostrud vero stet ipsum quis ipsum in erat. Dolore elitr ipsum. Eos tempor nulla illum amet stet invidunt vel autem at eos tempor vel lorem elit. No clita et elitr congue dolor elit invidunt est et consetetur sit et est vero. At feugiat et amet et et commodo consetetur ut amet hendrerit tempor sit ipsum et dolore consequat.\n","pageCount":100,"excerpt":"Feugait sanctus amet id liber et lorem diam lorem tempor. Facilisi aliquip eirmod te iriure sanctus ex tation dolore justo nam et dolor dolore consequat clita. Labore sit kasd stet et duis vero dignissim diam accumsan facilisis nonummy eos duis accusam consequat et dolores. Elitr hendrerit dolor dolor. Diam doming laoreet iusto. Ea takimata velit eirmod odio et invidunt dolor. Dolores aliquyam amet dolor diam ipsum diam lorem stet. Sit lorem eos justo magna et eum sit praesent molestie no facilisi diam no sit sit. Lorem ut tempor delenit labore et sed. Diam eirmod elitr et sadipscing et sit kasd et duis sit et invidunt diam elitr justo elitr kasd. Et sadipscing cum consetetur dolores molestie stet eos ut clita eum sadipscing. Sit dolore diam nobis eirmod voluptua. Vero consequat vero id voluptua no clita in ut sadipscing facilisis takimata gubergren. Nam diam gubergren eos aliquyam sit diam magna option vel gubergren dolor et consetetur ipsum odio. Commodo tempor voluptua illum ea dolores consetetur. Takimata ea molestie et sit ipsum lorem tempor amet invidunt sea no ut dolor vero diam eirmod. Et dolore ea.\nEos suscipit takimata sit placerat consetetur diam stet amet odio vero te. Augue sed stet rebum no ea clita labore sed takimata sit. Congue amet exerci exerci ut tempor nulla dolores. Feugiat et est. Gubergren elitr sanctus labore labore et sanctus illum vel sed at dolores takimata sed. Elitr amet diam ipsum facilisis sit erat lorem euismod voluptua eirmod stet magna. Consequat vero dolor. Diam lorem ex erat adipiscing nibh euismod lorem. Tincidunt labore tempor nonummy justo. Mazim vero amet est elit at est labore. Duo stet ipsum aliquyam facilisi no consetetur elitr ea clita et ipsum nonummy et in erat lorem dolor et. Et tempor augue augue stet invidunt vero amet ipsum dolor dolor eos tempor tempor. Aliquyam ut zzril lorem sit accusam accusam. Diam eros clita. Amet elitr tempor lorem. Dolore luptatum diam invidunt lorem amet wisi sanctus clita ipsum. Rebum voluptua nonumy vero duo magna erat at duo magna sit stet voluptua dolor amet. Duo euismod liber justo ea consequat lorem invidunt.\nVel ea sed cum sanctus lorem vero sit in no et feugiat. Et elitr eos lorem eirmod. Et eirmod dolor eu nam no liber veniam wisi et consetetur rebum vel clita justo ipsum eum. Ut accusam amet iusto vel dolor justo sea magna dolor et kasd consetetur vel eos ad tempor odio. Sanctus at eirmod no. Et ea takimata vel takimata augue sit dolor sanctus vel erat dolore possim. Ut sit aliquam qui doming invidunt dolore et odio.\nRebum eos ad amet tempor tincidunt tincidunt nonumy autem luptatum tempor autem et magna erat sit vel. Diam est euismod illum clita tempor et erat duo. Eirmod suscipit tempor quis elitr vulputate clita illum sed gubergren sit diam nonumy. Nobis consetetur facilisis in sed eos dolor nibh sadipscing et sed ea est diam sit labore diam justo justo. Ut voluptua accumsan dolore et. Facer ut ad et ipsum. Eos dolor sit magna dolor magna vel takimata elitr justo feugiat. Aliquip et tempor erat takimata nisl et. Dolore ea clita ipsum kasd vulputate ipsum est sed aliquyam. Aliquip vero veniam.\nNulla at volutpat in gubergren sit ipsum veniam vel sea clita eirmod ipsum et ipsum sed lobortis eirmod lorem. Tincidunt clita et elitr ipsum aliquip duo sed imperdiet et autem nulla justo nulla mazim vulputate kasd et kasd. Dolores lorem sea. Elitr ea et amet autem dolor dolor facilisi invidunt dolor elitr et eirmod justo accusam justo eos amet. Sanctus nonumy et rebum eu eos feugiat nonummy dolor et sit clita dolor ipsum duo sit molestie takimata ea. Lorem et consetetur hendrerit sit quis vero dolores sed et et. Kasd ea et hendrerit. Elitr dolor aliquip gubergren magna takimata consetetur cum dolore vero nonumy ex clita. Magna blandit dolores lorem dolor consetetur est nonumy. Magna stet congue feugiat kasd dolore tempor ullamcorper accusam voluptua tempor duo dolor sit sit gubergren congue clita. Takimata gubergren sed tincidunt facilisis dolor dolores magna vel et et dolor ea kasd ut takimata. Accusam et nulla sadipscing kasd magna ut et et diam magna nulla vulputate rebum. Et amet clita lorem et ea vel labore sit kasd amet eos odio rebum. Clita dolore quis no dolore aliquip sit labore et iriure stet assum et ut autem. Sed erat at.\n","publishDate":"2021-09-30T16:49:20.8290778+00:00"},{"id":2,"title":"Book 2","description":"Quis et in clita est. Voluptua accusam sea et sit et et vel accusam voluptua dolore clita aliquam lorem ea adipiscing ea. Diam labore et sadipscing tation at dolore iusto eos eirmod tempor accusam elitr at no dolore sadipscing tempor ipsum.\n","pageCount":200,"excerpt":"Consetetur clita dolor magna takimata vulputate lorem. Et lorem eos aliquyam vero wisi clita in sit. Consectetuer sadipscing justo ut doming ipsum in dolor et duo et id clita justo et voluptua nonumy. Gubergren dolor diam amet eros et lorem lorem duis et aliquyam ut no duis et sadipscing odio stet justo. Tempor magna dolore eirmod. Te augue est diam ipsum diam et est gubergren lorem dolor. Sed sadipscing lorem elitr est takimata justo diam odio dolore. Eos et amet magna nisl ut eirmod. Rebum nonummy est est elit qui aliquyam est invidunt invidunt voluptua takimata ea ipsum lorem molestie sed. Labore duo justo diam. Sit molestie lorem tempor et in nonumy ipsum duo. Invidunt aliquyam sed et. Qui molestie ut liber no aliquyam sanctus dolor elitr invidunt sit dolor vel. Ea quis veniam minim no sit adipiscing ut consetetur. Accusam justo aliquyam vero sed dolore magna sea justo sed stet nihil no nonumy et dolore.\nSea blandit consectetuer tempor at elitr tincidunt tempor nulla ipsum. Magna congue ad amet dolores sit justo ipsum et et. Dolores tempor diam ut iriure voluptua eirmod aliquyam ut elitr sadipscing dolore sit facilisi. Feugiat duis sit ea delenit ea consectetuer nulla ut gubergren eum et exerci dignissim sanctus dolores. Justo et quis dolor at ipsum laoreet amet ipsum invidunt est eros minim takimata dolor et et. Lorem possim dolor veniam takimata exerci doming tempor eirmod voluptua sanctus et stet sed. Accusam diam vero amet justo est duo praesent et feugait ullamcorper vero dignissim diam eirmod sadipscing magna suscipit ea. Et ea facilisi diam accusam no et elitr diam eos kasd stet labore justo eirmod euismod nonumy et est. Nulla sit ad dolor voluptua esse takimata. Sanctus amet diam. Vero in amet amet dolores ea magna voluptua ea justo sanctus gubergren tation. Invidunt amet dolore est eirmod labore clita ipsum nostrud sed stet diam assum tempor ut ipsum.\nTempor et diam eirmod sanctus eos nonumy. Dolor ut te no et et sanctus diam cum ipsum sit facilisi eirmod nisl duo. At gubergren euismod congue vel. At et eirmod justo. Erat kasd stet amet vel lorem volutpat suscipit accusam. Aliquyam dolor ut erat dolor dolor kasd ea rebum diam odio diam odio vel takimata et sit. Dolore ipsum sed nonumy volutpat justo quod kasd est dolore consetetur et vel tation magna diam. Sanctus nonumy sea erat adipiscing nibh. Dolore no lorem diam lorem eirmod duo ipsum eirmod blandit dolores consectetuer consequat dolor dolor sadipscing eu. Dolore at facilisis sanctus nonumy stet. Ea eum adipiscing nonumy et amet diam nostrud dolore diam tempor ea. Sadipscing dolore elit ullamcorper dolore lorem sanctus consetetur eu et dolore accusam. Sea dolores eirmod ipsum et. Labore nulla eirmod amet commodo justo eos. Ut nulla takimata ipsum veniam sit erat vero nam erat tation sit sed labore et exerci labore nonumy. Ipsum dolore invidunt sea et sanctus nihil voluptua est augue commodo et eleifend dolore erat volutpat wisi. Et eu ipsum. Aliquyam elitr eirmod dolor ipsum dignissim consetetur nulla congue et amet no amet et gubergren. Gubergren accusam sanctus molestie duis at takimata aliquyam.\nStet ea tempor erat eos dolor eirmod kasd eos kasd clita. Nonummy et dolor ut justo eum tempor dolore nonumy tincidunt. Consetetur stet et dolores vero kasd amet. Est sit et eu magna. Stet ut molestie ea labore et dolore takimata laoreet at lorem cum justo tempor ut in iusto dolor. Ipsum ut clita commodo lorem et sit. Enim congue nonumy lorem et labore facilisis blandit vero ipsum. Consequat volutpat dolore et no. Autem esse no no vero te diam. Sed et accumsan in vero et eu in at diam eros ullamcorper suscipit voluptua amet consetetur. Amet diam sit augue adipiscing amet ea dolor eros sit diam sed voluptua eirmod dolor duis. Gubergren vulputate dolor lorem facilisis molestie facer lorem amet diam erat et voluptua ipsum. Feugiat et est stet gubergren dolor at lorem stet ut. Liber est amet eirmod ipsum et labore justo cum enim vulputate dolore est invidunt sanctus at accusam clita nonumy. Et autem accusam dolor rebum diam sit ullamcorper et nihil.\nDuis volutpat labore soluta sanctus autem sanctus kasd ipsum aliquyam ut accusam. Et commodo facer accusam nonumy invidunt ipsum. Dolores clita rebum ut eos odio ut facilisi. Sadipscing sit feugiat dolores dolores labore aliquyam no. Erat vel tincidunt no labore et accusam sadipscing mazim takimata clita et at accusam sed id volutpat. Sanctus sit eu. Nisl dolores ipsum autem praesent eos in esse diam nonumy elitr sadipscing diam eirmod et consetetur quis et. Lorem sed wisi amet et volutpat qui sit eos est at illum duo ad elit minim erat. Kasd ipsum dolore iusto lorem luptatum ut... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20211001 13:49:24.090" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:20.517" endtime="20211001 13:49:24.090"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20211001 13:49:24.092" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:24.091" endtime="20211001 13:49:24.093"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:20.517" endtime="20211001 13:49:24.093"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:20.515" endtime="20211001 13:49:24.093"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:20.515" endtime="20211001 13:49:24.094"/>
+</kw>
+<kw name="Então Conferir o status code &quot;200&quot;" library="BDDpt-br" sourcename="Então ${keyword}">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Conferir o status code &quot;200&quot;" library="ResourceFakeAPI" sourcename="Conferir o status code &quot;${STATUS_CODE_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUS_CODE_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20211001 13:49:24.106" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:24.101" endtime="20211001 13:49:24.107"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.099" endtime="20211001 13:49:24.108"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.098" endtime="20211001 13:49:24.109"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.096" endtime="20211001 13:49:24.110"/>
+</kw>
+<kw name="E Conferir o reason &quot;OK&quot;" library="BDDpt-br" sourcename="E ${keyword}">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Conferir o reason &quot;OK&quot;" library="ResourceFakeAPI" sourcename="Conferir o reason &quot;${STATUS_REASON_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.reason}</arg>
+<arg>${STATUS_REASON_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20211001 13:49:24.114" endtime="20211001 13:49:24.118"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.113" endtime="20211001 13:49:24.119"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.112" endtime="20211001 13:49:24.119"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.111" endtime="20211001 13:49:24.119"/>
+</kw>
+<kw name="E Conferir se retorna uma lista com &quot;200&quot; livros" library="BDDpt-br" sourcename="E ${keyword}">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>${keyword}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Conferir se retorna uma lista com &quot;200&quot; livros" library="ResourceFakeAPI" sourcename="Conferir se retorna uma lista com &quot;${QUANTIDADE_LIVROS}&quot; livros">
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${RESPOSTA.json()}</arg>
+<arg>${QUANTIDADE_LIVROS}</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<msg timestamp="20211001 13:49:24.128" level="INFO">Length is 200</msg>
+<status status="PASS" starttime="20211001 13:49:24.122" endtime="20211001 13:49:24.129"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.121" endtime="20211001 13:49:24.129"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.120" endtime="20211001 13:49:24.129"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.120" endtime="20211001 13:49:24.130"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:20.514" endtime="20211001 13:49:24.130"/>
+</test>
+<test id="s1-t2" name="Buscar um livro específico (GET em um livro específico)">
+<kw name="Requisitar o livro &quot;15&quot;" library="ResourceFakeAPI" sourcename="Requisitar o livro &quot;${ID_LIVRO}&quot;">
+<kw name="GET" library="RequestsLibrary">
+<var>${RESPOSTA}</var>
+<arg>${URL_API}Books/${ID_LIVRO}</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20211001 13:49:25.183" level="INFO">GET Request : url=https://fakerestapi.azurewebsites.net/api/v1/Books/15 
+ path_url=/api/v1/Books/15 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20211001 13:49:25.184" level="INFO">GET Response : url=https://fakerestapi.azurewebsites.net/api/v1/Books/15 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Content-Type': 'application/json; charset=utf-8; v=1.0', 'Server': 'Kestrel', 'api-supported-versions': '1.0', 'Date': 'Fri, 01 Oct 2021 16:49:23 GMT'} 
+ body={"id":15,"title":"Book 15","description":"Magna ipsum sed consectetuer stet ea et takimata tempor sanctus. Et sed illum consetetur ipsum stet et amet consectetuer stet exerci invidunt dolore sit nonumy tempor takimata voluptua. Dolor et illum et sit consetetur ea gubergren rebum takimata sit nonumy. Tempor magna facilisi consetetur autem justo consetetur. Invidunt at sed et lorem invidunt amet autem sanctus nibh illum est est in molestie sit magna. Amet et takimata justo vulputate takimata consequat ut erat tempor est sea elitr lorem diam elitr. Gubergren dolore ut takimata ipsum exerci ipsum aliquyam.\n","pageCount":1500,"excerpt":"Nulla eirmod est takimata tempor euismod sed sit voluptua dolor erat amet est diam clita rebum ex. Ipsum diam elitr sadipscing amet amet tempor in et nibh magna est velit takimata. Aliquip sed sed kasd sed nostrud ea amet at kasd diam takimata nobis stet et nonumy ad. Et tempor elitr dolores justo vel clita vero facilisi ipsum vero vulputate duo ipsum. Dolores nulla et dolores amet esse lorem kasd elitr aliquyam labore. Eos ut suscipit in sea lorem dolores duis diam no. Amet lorem qui erat. Elitr illum et consequat delenit magna vel nisl justo. Quis id accumsan sed sea eos sit tempor et lorem duo. Sanctus consetetur sed vel facilisi amet eos magna eirmod ipsum aliquyam facer dolore accumsan duis ipsum voluptua in. Ut sed stet et voluptua lorem esse dolore ad vero enim et aliquyam amet. Nisl eum erat facilisis facilisis nonumy zzril accusam justo et et. Gubergren est consequat takimata eirmod accusam facilisis tempor iriure aliquyam diam veniam clita diam at lorem gubergren. Amet eu tempor sed doming ut te nam eos consetetur diam no sadipscing dolor illum ipsum eirmod at. Ex elitr et sanctus ipsum no elitr. Eirmod ipsum consequat diam exerci nam placerat et elitr facilisi. Amet sed labore nibh hendrerit duo exerci dolor ad sed ut ut.\nCommodo amet vel aliquyam sed amet minim takimata et eos sed et ut sed at. Labore kasd lorem dolor sed lorem clita takimata diam lorem nonumy labore vulputate sed sed feugiat vero molestie. Nulla amet nonumy lorem amet elitr accusam. Wisi at ut consetetur te. Ipsum tempor facilisis lorem lorem erat facilisi est lorem diam vero et dolore et justo consectetuer duis iriure. Diam clita vel vel dolor et labore iusto vero diam vel nihil tempor liber sit kasd. Elitr tempor option sed sea tempor at et luptatum. Eos ipsum clita vero sit veniam at. Dolores nobis eirmod sadipscing nonummy. Consectetuer sadipscing voluptua stet ex diam delenit ut tincidunt et tempor labore labore at et tempor et duo erat. Ipsum sed sed duo sea iusto et lorem vero dolor accusam duo amet. Ipsum kasd blandit duis ea nulla sed sed gubergren invidunt consequat et autem tempor. Lorem molestie nonumy amet amet sit. Ut aliquip et duis praesent diam ea nisl. Aliquyam magna diam at amet dolor justo diam eirmod magna nonummy kasd at. Et sit possim amet molestie at sed et justo suscipit. Justo duo et diam ea facer doming vulputate est dolor enim.\nUt exerci lorem no duis et tincidunt sed et qui. Et aliquyam accusam accumsan illum sit consetetur. Elitr sanctus sit dolore sea ea clita nostrud no dolore diam amet dolores. Dolore sit dolor voluptua voluptua ut sed et stet dolore tempor invidunt. Sed est labore consetetur et tempor sea amet sed no diam ullamcorper. Invidunt luptatum duis et wisi duo ipsum dolore invidunt id dolore justo lorem eirmod dignissim voluptua. Ea vero ipsum rebum sed. Tempor lorem dignissim dolores voluptua amet elitr consetetur nihil dolore gubergren. Voluptua accumsan commodo kasd odio lorem. Erat invidunt erat sanctus. Sea nonumy rebum duo gubergren no sed diam invidunt ad sed illum velit. Stet nonumy lobortis. Et eirmod nonumy feugiat et elit amet ea aliquyam et nonummy eirmod duis dolores nisl ea tempor sea ut. Dolor ea illum. Sed quis labore nostrud nihil amet kasd et accumsan dolore aliquam sadipscing lorem duis nonumy ipsum magna. Amet sit justo justo kasd.\nEu iusto magna dolore takimata sea consetetur. Justo eum feugiat invidunt praesent ut sadipscing ad takimata rebum lorem. Consetetur quis exerci ipsum id consequat. Eum nulla duo dolores stet accusam tempor minim clita cum illum magna. Zzril nonummy commodo facilisis vero vero rebum sit consetetur magna lorem duo et sit nonumy rebum erat lorem dolore. Euismod elitr et sanctus sed te hendrerit ipsum et clita et diam lorem facilisi ut consequat eirmod dolore eirmod. At at sit vel dolor dolores feugait sea no amet erat mazim dolor nonumy sit te. Takimata tempor nobis lorem ut rebum lorem et sea dolore lorem vel. Et aliquyam sea takimata ea dolore sed justo ea. Sit nonumy eros sit gubergren gubergren amet et dolor sed autem volutpat euismod suscipit ut invidunt. Aliquip veniam tempor.\nDolores erat iriure. Feugiat odio ipsum voluptua no eirmod takimata lorem sed nibh elitr lorem voluptua consetetur voluptua est adipiscing kasd. Justo nibh et et. Ut eirmod amet eu labore et zzril esse duo et kasd duo. Dolor accusam zzril amet dolor stet magna kasd dolor sed vero tempor nulla sed dolor dolores aliquam nonumy. Est iriure iriure. Ipsum ea ipsum tempor facilisi et. No vel sed wisi ut lorem in. Ea kasd qui lorem quis dolores et nonumy. Eos sit labore justo duo amet facer takimata amet invidunt magna in augue.\n","publishDate":"2021-09-16T16:49:24.1822012+00:00"} 
+ </msg>
+<msg timestamp="20211001 13:49:25.184" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:24.135" endtime="20211001 13:49:25.184"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20211001 13:49:25.186" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:25.185" endtime="20211001 13:49:25.186"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.135" endtime="20211001 13:49:25.187"/>
+</kw>
+<kw name="Conferir o status code &quot;200&quot;" library="ResourceFakeAPI" sourcename="Conferir o status code &quot;${STATUS_CODE_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUS_CODE_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20211001 13:49:25.195" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:25.191" endtime="20211001 13:49:25.195"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:25.188" endtime="20211001 13:49:25.195"/>
+</kw>
+<kw name="Conferir o reason &quot;OK&quot;" library="ResourceFakeAPI" sourcename="Conferir o reason &quot;${STATUS_REASON_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.reason}</arg>
+<arg>${STATUS_REASON_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20211001 13:49:25.199" endtime="20211001 13:49:25.202"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:25.197" endtime="20211001 13:49:25.203"/>
+</kw>
+<kw name="Conferir se retorna todos os dados corretos do livro 15" library="ResourceFakeAPI">
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>id</arg>
+<arg>${BOOK_15.id}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:25.205" endtime="20211001 13:49:25.210"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>title</arg>
+<arg>${BOOK_15.title}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:25.211" endtime="20211001 13:49:25.216"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>pageCount</arg>
+<arg>${BOOK_15.pageCount}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:25.218" endtime="20211001 13:49:25.221"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${RESPOSTA.json()["description"]}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20211001 13:49:25.223" level="INFO">Length is 568</msg>
+<status status="PASS" starttime="20211001 13:49:25.221" endtime="20211001 13:49:25.223"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${RESPOSTA.json()["excerpt"]}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20211001 13:49:25.225" level="INFO">Length is 4654</msg>
+<status status="PASS" starttime="20211001 13:49:25.224" endtime="20211001 13:49:25.226"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${RESPOSTA.json()["publishDate"]}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20211001 13:49:25.229" level="INFO">Length is 33</msg>
+<status status="PASS" starttime="20211001 13:49:25.226" endtime="20211001 13:49:25.229"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:25.204" endtime="20211001 13:49:25.229"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:24.133" endtime="20211001 13:49:25.230"/>
+</test>
+<test id="s1-t3" name="Cadastrar um novo livro (POST)">
+<kw name="Cadastrar um novo livro" library="ResourceFakeAPI">
+<kw name="POST" library="RequestsLibrary">
+<var>${RESPOSTA}</var>
+<arg>${URL_API}Books</arg>
+<arg>data=${CONTEUDO}</arg>
+<arg>headers=${HEADER}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20211001 13:49:26.221" level="INFO">POST Request : url=https://fakerestapi.azurewebsites.net/api/v1/Books 
+ path_url=/api/v1/Books 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Content-Length': '173'} 
+ body={
+    "id": 2322,
+    "title": "teste",
+    "description": "descricao de teste",
+    "pageCount": 0,
+    "excerpt": "string",
+    "publishDate": "2021-09-29T12:47:35.579Z"
+} 
+ </msg>
+<msg timestamp="20211001 13:49:26.221" level="INFO">POST Response : url=https://fakerestapi.azurewebsites.net/api/v1/Books 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Content-Type': 'application/json; charset=utf-8; v=1.0', 'Server': 'Kestrel', 'api-supported-versions': '1.0', 'Date': 'Fri, 01 Oct 2021 16:49:24 GMT'} 
+ body={"id":2322,"title":"teste","description":"descricao de teste","pageCount":0,"excerpt":"string","publishDate":"2021-09-29T12:47:35.579Z"} 
+ </msg>
+<msg timestamp="20211001 13:49:26.221" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:25.235" endtime="20211001 13:49:26.221"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20211001 13:49:26.222" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:26.221" endtime="20211001 13:49:26.222"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:25.233" endtime="20211001 13:49:26.222"/>
+</kw>
+<kw name="Conferir o status code &quot;200&quot;" library="ResourceFakeAPI" sourcename="Conferir o status code &quot;${STATUS_CODE_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUS_CODE_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20211001 13:49:26.224" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:26.223" endtime="20211001 13:49:26.225"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:26.222" endtime="20211001 13:49:26.225"/>
+</kw>
+<kw name="Conferir o reason &quot;OK&quot;" library="ResourceFakeAPI" sourcename="Conferir o reason &quot;${STATUS_REASON_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.reason}</arg>
+<arg>${STATUS_REASON_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20211001 13:49:26.227" endtime="20211001 13:49:26.229"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:26.226" endtime="20211001 13:49:26.229"/>
+</kw>
+<kw name="Conferir se retorna os dados corretamente" library="ResourceFakeAPI">
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>id</arg>
+<arg>${json}[id]</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:26.232" endtime="20211001 13:49:26.234"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>title</arg>
+<arg>${json}[title]</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:26.234" endtime="20211001 13:49:26.237"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>description</arg>
+<arg>${json}[description]</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:26.238" endtime="20211001 13:49:26.240"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:26.230" endtime="20211001 13:49:26.240"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:25.232" endtime="20211001 13:49:26.241"/>
+</test>
+<test id="s1-t4" name="Cadastrar um novo livro (PUT)">
+<kw name="Cadastrar o livro &quot;0&quot;" library="ResourceFakeAPI" sourcename="Cadastrar o livro &quot;${id_livro}&quot;">
+<kw name="PUT" library="RequestsLibrary">
+<var>${RESPOSTA}</var>
+<arg>${URL_API}Books/${id_livro}</arg>
+<arg>data=${CONTEUDO}</arg>
+<arg>headers=${HEADER}</arg>
+<doc>Sends a PUT request.</doc>
+<msg timestamp="20211001 13:49:27.192" level="INFO">PUT Request : url=https://fakerestapi.azurewebsites.net/api/v1/Books/0 
+ path_url=/api/v1/Books/0 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Content-Length': '173'} 
+ body={
+    "id": 2322,
+    "title": "teste",
+    "description": "descricao de teste",
+    "pageCount": 0,
+    "excerpt": "string",
+    "publishDate": "2021-09-29T12:47:35.579Z"
+} 
+ </msg>
+<msg timestamp="20211001 13:49:27.192" level="INFO">PUT Response : url=https://fakerestapi.azurewebsites.net/api/v1/Books/0 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Content-Type': 'application/json; charset=utf-8; v=1.0', 'Server': 'Kestrel', 'api-supported-versions': '1.0', 'Date': 'Fri, 01 Oct 2021 16:49:25 GMT'} 
+ body={"id":2322,"title":"teste","description":"descricao de teste","pageCount":0,"excerpt":"string","publishDate":"2021-09-29T12:47:35.579Z"} 
+ </msg>
+<msg timestamp="20211001 13:49:27.192" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:26.247" endtime="20211001 13:49:27.192"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20211001 13:49:27.193" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:27.192" endtime="20211001 13:49:27.193"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:26.246" endtime="20211001 13:49:27.193"/>
+</kw>
+<kw name="Conferir o status code &quot;200&quot;" library="ResourceFakeAPI" sourcename="Conferir o status code &quot;${STATUS_CODE_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUS_CODE_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20211001 13:49:27.196" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:27.195" endtime="20211001 13:49:27.196"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:27.194" endtime="20211001 13:49:27.196"/>
+</kw>
+<kw name="Conferir o reason &quot;OK&quot;" library="ResourceFakeAPI" sourcename="Conferir o reason &quot;${STATUS_REASON_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.reason}</arg>
+<arg>${STATUS_REASON_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20211001 13:49:27.197" endtime="20211001 13:49:27.199"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:27.197" endtime="20211001 13:49:27.200"/>
+</kw>
+<kw name="Conferir se retorna os dados corretamente" library="ResourceFakeAPI">
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>id</arg>
+<arg>${json}[id]</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:27.201" endtime="20211001 13:49:27.203"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>title</arg>
+<arg>${json}[title]</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:27.203" endtime="20211001 13:49:27.205"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${RESPOSTA.json()}</arg>
+<arg>description</arg>
+<arg>${json}[description]</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" starttime="20211001 13:49:27.205" endtime="20211001 13:49:27.206"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:27.200" endtime="20211001 13:49:27.206"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:26.244" endtime="20211001 13:49:27.207"/>
+</test>
+<test id="s1-t5" name="Deletar livro">
+<kw name="Deletar o livro &quot;1&quot;" library="ResourceFakeAPI" sourcename="Deletar o livro &quot;${livro}&quot;">
+<kw name="DELETE" library="RequestsLibrary">
+<var>${RESPOSTA}</var>
+<arg>${URL_API}Books/${livro}</arg>
+<doc>Sends a DELETE request.</doc>
+<msg timestamp="20211001 13:49:28.162" level="INFO">DELETE Request : url=https://fakerestapi.azurewebsites.net/api/v1/Books/1 
+ path_url=/api/v1/Books/1 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20211001 13:49:28.162" level="INFO">DELETE Response : url=https://fakerestapi.azurewebsites.net/api/v1/Books/1 
+ status=200, reason=OK 
+ headers={'Server': 'Kestrel', 'api-supported-versions': '1.0', 'Date': 'Fri, 01 Oct 2021 16:49:27 GMT', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20211001 13:49:28.162" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:27.210" endtime="20211001 13:49:28.163"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${RESPOSTA}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20211001 13:49:28.163" endtime="20211001 13:49:28.164"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20211001 13:49:28.165" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:28.164" endtime="20211001 13:49:28.166"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:27.209" endtime="20211001 13:49:28.166"/>
+</kw>
+<kw name="Conferir o status code &quot;200&quot;" library="ResourceFakeAPI" sourcename="Conferir o status code &quot;${STATUS_CODE_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUS_CODE_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20211001 13:49:28.174" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20211001 13:49:28.170" endtime="20211001 13:49:28.174"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:28.168" endtime="20211001 13:49:28.174"/>
+</kw>
+<kw name="Conferir o reason &quot;OK&quot;" library="ResourceFakeAPI" sourcename="Conferir o reason &quot;${STATUS_REASON_DESEJADO}&quot;">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.reason}</arg>
+<arg>${STATUS_REASON_DESEJADO}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20211001 13:49:28.180" endtime="20211001 13:49:28.185"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:28.176" endtime="20211001 13:49:28.186"/>
+</kw>
+<status status="PASS" starttime="20211001 13:49:27.208" endtime="20211001 13:49:28.188"/>
+</test>
+<doc>Documentação da API: https://fakerestapi.azurewebsites.net/index.html</doc>
+<status status="PASS" starttime="20211001 13:49:20.355" endtime="20211001 13:49:28.200"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="TestCasesFakeAPI">TestCasesFakeAPI</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
