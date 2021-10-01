@@ -59,8 +59,8 @@ Deletar o livro "${livro}"
 
 # CONFERENCIAS
 
-Conferir o status code
-    [Arguments]                 ${STATUS_CODE_DESEJADO}
+Conferir o status code "${STATUS_CODE_DESEJADO}"
+    # [Arguments]                 ${STATUS_CODE_DESEJADO}
     Should be equal as strings  ${RESPOSTA.status_code}         ${STATUS_CODE_DESEJADO}
 
 Conferir se retorna os dados corretamente
@@ -70,8 +70,8 @@ Conferir se retorna os dados corretamente
 
     Dictionary should contain item                              ${RESPOSTA.json()}                  description         ${json}[description]
 
-Conferir o reason
-    [Arguments]                 ${STATUS_REASON_DESEJADO}
+Conferir o reason "${STATUS_REASON_DESEJADO}"
+    # [Arguments]                 ${STATUS_REASON_DESEJADO}
     Should be equal as strings                                  ${RESPOSTA.reason}                  ${STATUS_REASON_DESEJADO}
 
 Conferir se retorna uma lista com "${QUANTIDADE_LIVROS}" livros
