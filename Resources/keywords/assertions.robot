@@ -5,7 +5,7 @@ Resource    ${ROOT}/resources/main.robot
 
 *** Keywords ***
 the status code should be "${book}"
-    Pass Execution
+    Pass Execution    Pass
 
 the search should return the correct data
-    Pass Execution
+    Pass Execution    Pass
