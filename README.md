@@ -62,7 +62,7 @@ After execution, you can access the logs in the `logs/` directory.
 > 💡 Remember to execute this command from the project's root folder!
 
 ## References
-This project was developed to validate the FakeAPI services. You can find the Swagger for the services on this [link](#https://fakerestapi.azurewebsites.net/index.html)
+This project was developed to validate the FakeAPI services. You can find the Swagger for the services on this [link](https://fakerestapi.azurewebsites.net/index.html)
 
 Also, to implement the test cases, the following libraries were used:  
 1. [Requests Library](https://marketsquare.github.io/robotframework-requests/doc/RequestsLibrary.html#library-documentation-top)
